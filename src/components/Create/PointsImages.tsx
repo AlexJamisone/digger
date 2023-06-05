@@ -64,6 +64,7 @@ const PointsImages = () => {
 								fallback={<Spinner />}
 							/>
 							<IconButton
+								rounded={'full'}
 								size={'xs'}
 								aria-label="deletImage"
 								position="absolute"

@@ -6,13 +6,12 @@ import {
 	ModalFooter,
 	ModalHeader,
 } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
 import type { ReactNode } from 'react';
 import { useMapsContext } from '~/context/mapsContext';
+import PointsActions from './PointsActions';
 import PointsImages from './PointsImages';
-import {
-	default as PointsAction,
-	default as PointsInputs,
-} from './PointsInputs';
+import { default as PointsInputs } from './PointsInputs';
 
 type CreatePointsProps = {
 	images?: ReactNode;
@@ -36,6 +35,8 @@ const CreatePoints = ({ action, images, inputs }: CreatePointsProps) => {
 					justifyContent: 'flex-start',
 					mt: 3,
 				}}
+				as={motion.div}
+				layout
 			>
 				<ModalHeader textAlign="center">Новая точка</ModalHeader>
 				<ModalCloseButton />
@@ -51,6 +52,6 @@ const CreatePoints = ({ action, images, inputs }: CreatePointsProps) => {
 
 CreatePoints.Image = PointsImages;
 CreatePoints.Inputs = PointsInputs;
-CreatePoints.Action = PointsAction;
+CreatePoints.Action = PointsActions;
 
 export default CreatePoints;

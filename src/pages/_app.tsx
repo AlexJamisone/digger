@@ -9,12 +9,12 @@ import '../styles/global.css';
 
 const MyApp: AppType = ({ Component, pageProps }) => {
 	return (
-		<ClerkProvider localization={ruRU} {...pageProps}>
-			<ChakraProvider theme={theme}>
+		<ChakraProvider theme={theme}>
+			<ClerkProvider localization={ruRU} {...pageProps}>
 				<Navigation />
 				<Component {...pageProps} />
-			</ChakraProvider>
-		</ClerkProvider>
+			</ClerkProvider>
+		</ChakraProvider>
 	);
 };
 
