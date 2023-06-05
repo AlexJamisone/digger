@@ -27,6 +27,8 @@
 		"@trpc/react-query": "^10.26.0",
 		"@trpc/server": "^10.26.0",
 		"@uploadthing/react": "^4.0.0",
+		"@upstash/ratelimit": "^0.4.3",
+		"@upstash/redis": "^1.21.0",
 		"framer-motion": "^10.12.16",
 		"next": "^13.4.2",
 		"react": "18.2.0",
@@ -35,6 +37,7 @@
 		"react-icons": "^4.9.0",
 		"superjson": "1.12.2",
 		"uploadthing": "^4.0.0",
+		"yandex-maps": "^0.0.1",
 		"zod": "^3.21.4"
 	},
 	"devDependencies": {

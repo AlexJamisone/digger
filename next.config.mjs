@@ -20,7 +20,9 @@ const config = {
 	},
 	experimental: {
 		esmExternals: false
+	},
+	images: {
+		domains: ['https://uploadthing.com']
 	}
-	
 };
 export default config;

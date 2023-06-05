@@ -7,7 +7,11 @@ import {
 
 export const pointsRouter = createTRPCRouter({
 	get: publicProcedure.query(async ({ ctx }) => {
-		return await ctx.prisma.point.findMany();
+		return await ctx.prisma.point.findMany({
+			include: {
+				images: true,
+			},
+		});
 	}),
 	create: adminProcedure
 		.input(

@@ -1,5 +1,7 @@
 import { pointsRouter } from '~/server/api/routers/points';
 import { createTRPCRouter } from '~/server/api/trpc';
+import { imageRouter } from './routers/images';
+import { userRouter } from './routers/user';
 
 /**
  * This is the primary router for your server.
@@ -8,6 +10,8 @@ import { createTRPCRouter } from '~/server/api/trpc';
  */
 export const appRouter = createTRPCRouter({
 	points: pointsRouter,
+	user: userRouter,
+	images: imageRouter,
 });
 
 // export type definition of API
