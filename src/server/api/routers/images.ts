@@ -12,4 +12,13 @@ export const imageRouter = createTRPCRouter({
 		.mutation(async ({ input }) => {
 			return await utapi.deleteFiles(input.src);
 		}),
+	deletAllImages: adminProcedure
+		.input(
+			z.object({
+				images: z.array(z.string()),
+			})
+		)
+		.mutation(async ({ input }) => {
+			return await utapi.deleteFiles(input.images);
+		}),
 });

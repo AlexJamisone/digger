@@ -7,6 +7,7 @@ export type PointState = {
 	latitude?: number;
 	longitude?: number;
 	isSet: boolean;
+	edit: boolean;
 };
 
 interface SetIdAction {
@@ -41,6 +42,10 @@ interface SetSetAction {
 	type: 'SET_SET';
 	payload: boolean;
 }
+interface SetEditAction {
+	type: 'SET_EDIT';
+	payload: boolean;
+}
 interface SetClearAction {
 	type: 'SET_CLEAR';
 }
@@ -59,13 +64,15 @@ export type Action =
 	| SetVideoLinkAction
 	| SetLongitudeAction
 	| SetLatitudeAction
-	| SetSetAction;
+	| SetSetAction
+	| SetEditAction;
 
 export const initialState: PointState = {
 	id: '',
 	description: '',
 	image: [],
 	isSet: false,
+	edit: false,
 	name: '',
 	videoLink: '',
 	latitude: undefined,
@@ -89,6 +96,8 @@ export const pointReducer = (state: PointState, action: Action): PointState => {
 			return { ...state, latitude: action.payload };
 		case 'SET_SET':
 			return { ...state, isSet: action.payload };
+		case 'SET_EDIT':
+			return { ...state, edit: action.payload };
 		case 'SET_CLEAR':
 			return {
 				id: '',
@@ -97,6 +106,7 @@ export const pointReducer = (state: PointState, action: Action): PointState => {
 				isSet: false,
 				latitude: undefined,
 				longitude: undefined,
+				edit: false,
 				name: '',
 				videoLink: '',
 			};

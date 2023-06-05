@@ -1,4 +1,3 @@
-import { useDisclosure } from '@chakra-ui/react';
 import { Map, Placemark } from '@pbe/react-yandex-maps';
 import { useReducer } from 'react';
 import type { MapEvent } from 'yandex-maps';
@@ -11,7 +10,6 @@ const MapsObject = () => {
 	const { data: role } = api.user.get.useQuery();
 	const { data: points } = api.points.get.useQuery();
 	const [state, dispatch] = useReducer(pointReducer, initialState);
-	const { onClose: closeCreate } = useDisclosure();
 
 	const handlClick = (event: MapEvent) => {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -31,7 +29,6 @@ const MapsObject = () => {
 			value={{
 				state,
 				dispatch,
-				closeCreate,
 			}}
 		>
 			<Map

@@ -4,7 +4,6 @@ import type { Action, PointState } from '~/reducer/pointReducer';
 export interface MapsContext {
 	state: PointState;
 	dispatch: Dispatch<Action>;
-	closeCreate: () => void;
 }
 
 const MapsContex = createContext<MapsContext | null>(null);

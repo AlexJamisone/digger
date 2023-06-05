@@ -9,6 +9,7 @@ import {
 import { motion } from 'framer-motion';
 import type { ReactNode } from 'react';
 import { useMapsContext } from '~/context/mapsContext';
+import { api } from '~/utils/api';
 import PointsActions from './PointsActions';
 import PointsImages from './PointsImages';
 import { default as PointsInputs } from './PointsInputs';
@@ -20,15 +21,29 @@ type CreatePointsProps = {
 };
 
 const CreatePoints = ({ action, images, inputs }: CreatePointsProps) => {
-	const { closeCreate, state, dispatch } = useMapsContext();
+	const { mutate: deletAllImages } = api.images.deletAllImages.useMutation();
+	const { state, dispatch } = useMapsContext();
 	return (
 		<Modal
 			isOpen={state.isSet}
 			onClose={() => {
+				if (state.image.length !== 0) {
+					deletAllImages(
+						{
+							images: state.image,
+						},
+						{
+							onSuccess: () => {
+								dispatch({ type: 'SET_CLEAR' });
+							},
+						}
+					);
+				}
 				dispatch({ type: 'SET_CLEAR' });
-				closeCreate();
 			}}
 			motionPreset="slideInRight"
+			closeOnOverlayClick={false}
+			closeOnEsc={false}
 		>
 			<ModalContent
 				containerProps={{
@@ -44,7 +59,7 @@ const CreatePoints = ({ action, images, inputs }: CreatePointsProps) => {
 					{images}
 					{inputs}
 				</ModalBody>
-				<ModalFooter>{action}</ModalFooter>
+				<ModalFooter gap={5}>{action}</ModalFooter>
 			</ModalContent>
 		</Modal>
 	);
