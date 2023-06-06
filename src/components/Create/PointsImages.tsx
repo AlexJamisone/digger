@@ -62,6 +62,7 @@ const PointsImages = () => {
 								h={150}
 								boxShadow="lg"
 								fallback={<Spinner />}
+								loading="lazy"
 							/>
 							<IconButton
 								rounded={'full'}
