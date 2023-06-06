@@ -1,3 +1,4 @@
+import { utapi } from 'uploadthing/server';
 import { z } from 'zod';
 import {
 	adminProcedure,
@@ -7,11 +8,7 @@ import {
 
 export const pointsRouter = createTRPCRouter({
 	get: publicProcedure.query(async ({ ctx }) => {
-		return await ctx.prisma.point.findMany({
-			include: {
-				images: true,
-			},
-		});
+		return await ctx.prisma.point.findMany();
 	}),
 	create: adminProcedure
 		.input(
@@ -25,7 +22,6 @@ export const pointsRouter = createTRPCRouter({
 			})
 		)
 		.mutation(async ({ ctx, input }) => {
-			const images = input.images.map((url) => ({ url }));
 			return await ctx.prisma.point.create({
 				data: {
 					name: input.name,
@@ -33,11 +29,49 @@ export const pointsRouter = createTRPCRouter({
 					latitude: input.latitude,
 					longitude: input.longitude,
 					linkToVideo: input.linkToVideo,
-					images: {
-						createMany: {
-							data: images,
-						},
-					},
+					images: input.images,
+				},
+			});
+		}),
+	delete: adminProcedure
+		.input(
+			z.object({
+				id: z.string(),
+				images: z.array(z.string()),
+			})
+		)
+		.mutation(async ({ ctx, input }) => {
+			await utapi.deleteFiles(input.images);
+			return await ctx.prisma.point.delete({
+				where: {
+					id: input.id,
+				},
+			});
+		}),
+	update: adminProcedure
+		.input(
+			z.object({
+				id: z.string(),
+				images: z.array(z.string()),
+				name: z.string().nonempty(),
+				description: z.string(),
+				latitude: z.number(),
+				longitude: z.number(),
+				linkToVideo: z.string(),
+			})
+		)
+		.mutation(async ({ ctx, input }) => {
+			return await ctx.prisma.point.update({
+				where: {
+					id: input.id,
+				},
+				data: {
+					description: input.description,
+					images: input.images,
+					latitude: input.latitude,
+					linkToVideo: input.linkToVideo,
+					longitude: input.longitude,
+					name: input.name,
 				},
 			});
 		}),

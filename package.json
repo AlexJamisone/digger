@@ -30,6 +30,7 @@
 		"@upstash/ratelimit": "^0.4.3",
 		"@upstash/redis": "^1.21.0",
 		"framer-motion": "^10.12.16",
+		"lightgallery": "^2.7.1",
 		"next": "^13.4.2",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",

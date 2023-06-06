@@ -7,9 +7,8 @@ generator client {
 }
 
 datasource db {
-    provider     = "mysql"
-    url          = env("DATABASE_URL")
-    relationMode = "prisma"
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
 
 model User {
@@ -18,22 +17,13 @@ model User {
 }
 
 model Point {
-    id          String  @id @default(cuid())
-    images      Image[]
+    id          String   @id @default(cuid())
+    images      String[]
     name        String
     description String
     latitude    Float
     longitude   Float
     linkToVideo String
-}
-
-model Image {
-    id      String @id @default(cuid())
-    url     String
-    pointId String
-    point   Point  @relation(fields: [pointId], references: [id])
-
-    @@index([pointId])
 }
 
 enum Role {

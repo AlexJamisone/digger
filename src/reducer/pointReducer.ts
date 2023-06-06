@@ -87,7 +87,8 @@ export const pointReducer = (state: PointState, action: Action): PointState => {
 		case 'SET_DESC':
 			return { ...state, description: action.payload };
 		case 'SET_IMG':
-			return { ...state, image: action.payload };
+			const newImageArray = [...state.image, ...action.payload];
+			return { ...state, image: newImageArray };
 		case 'SET_VIDEO':
 			return { ...state, videoLink: action.payload };
 		case 'SET_LON':

@@ -27,7 +27,6 @@ const PointsInputs = () => {
 				break;
 		}
 	};
-	console.log(state);
 	return (
 		<Stack direction="column" gap={3}>
 			{inputs(state).map(

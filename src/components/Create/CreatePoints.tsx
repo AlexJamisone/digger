@@ -50,7 +50,7 @@ const CreatePoints = ({ action, images, inputs }: CreatePointsProps) => {
 					justifyContent: 'flex-start',
 					mt: 3,
 				}}
-				as={motion.div}
+				as={motion.section}
 				layout
 			>
 				<ModalHeader textAlign="center">Новая точка</ModalHeader>
