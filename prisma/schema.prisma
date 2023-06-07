@@ -26,10 +26,11 @@ model Point {
 }
 
 model Comments {
-    id      String @id @default(cuid())
-    content String
-    point   Point  @relation(fields: [pointId], references: [id], onDelete: Cascade)
-    pointId String
+    id        String   @id @default(cuid())
+    content   String
+    point     Point    @relation(fields: [pointId], references: [id], onDelete: Cascade)
+    pointId   String
+    createdAt DateTime @default(now())
 
     @@index([pointId])
 }

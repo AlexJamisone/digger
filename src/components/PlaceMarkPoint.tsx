@@ -29,7 +29,6 @@ const PlaceMarkPoint = ({ point }: PlaceMarkPointProps) => {
 				}}
 				options={{
 					preset: isOpen ? 'islands#darkGreenIcon' : undefined,
-					draggable: true,
 				}}
 			/>
 			<PointCard
