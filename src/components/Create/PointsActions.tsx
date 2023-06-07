@@ -71,7 +71,7 @@ const PointsActions = () => {
 				colorScheme="red"
 				isLoading={deleteLoading}
 				onClick={() => {
-					if (state.image.length !== 0) {
+					if (state.image.length !== 0 && !state.edit) {
 						deletAllImages(
 							{
 								images: state.image,
@@ -82,6 +82,15 @@ const PointsActions = () => {
 								},
 							}
 						);
+					} else if (state.edit) {
+						dispatch({
+							type: 'SET_ALL',
+							payload: {
+								...state,
+								edit: false,
+								isSet: false,
+							},
+						});
 					} else {
 						dispatch({ type: 'SET_CLEAR' });
 					}

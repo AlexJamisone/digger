@@ -8,7 +8,7 @@ const PointAction = () => {
 	const { mutate: deletPoint, isLoading } = api.points.delete.useMutation();
 	const ctx = api.useContext();
 	const { dispatch, dispatchSelect } = useMapsContext();
-	const { point } = usePointContext();
+	const { point, onClose } = usePointContext();
 	const toast = useToast();
 	const handlButton = (
 		label: 'delet' | 'edit',
@@ -45,6 +45,7 @@ const PointAction = () => {
 						longitude: point.longitude,
 					},
 				});
+				onClose();
 			})}
 			{handlButton(
 				'delet',

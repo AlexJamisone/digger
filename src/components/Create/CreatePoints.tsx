@@ -51,8 +51,20 @@ const CreatePoints = ({ action, images, inputs }: CreatePointsProps) => {
 					mt: 3,
 				}}
 				as={motion.section}
+				initial={{ x: -500 }}
+				animate={{
+					x: 0,
+					transition: {
+						type: 'keyframes',
+						delay: 0.3,
+						duration: 0.5,
+					},
+				}}
+				exit={{
+					x: -500,
+					transition: { type: 'spring', duration: 0.5 },
+				}}
 				layout
-				zIndex={999}
 			>
 				<ModalHeader textAlign="center">Новая точка</ModalHeader>
 				<ModalCloseButton />
@@ -60,7 +72,9 @@ const CreatePoints = ({ action, images, inputs }: CreatePointsProps) => {
 					{images}
 					{inputs}
 				</ModalBody>
-				<ModalFooter gap={5}>{action}</ModalFooter>
+				<ModalFooter gap={5} mb={5}>
+					{action}
+				</ModalFooter>
 			</ModalContent>
 		</Modal>
 	);
