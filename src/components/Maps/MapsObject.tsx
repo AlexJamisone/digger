@@ -39,6 +39,7 @@ const MapsObject = () => {
 				defaultState={{
 					center: [45.115365, 34.563004],
 					zoom: 8.5,
+					type: 'yandex#hybrid',
 				}}
 				state={{
 					center: [
@@ -46,6 +47,7 @@ const MapsObject = () => {
 						state.longitude ?? selectedCoords[1] ?? 34.563004,
 					],
 					zoom: 8.5,
+					type: 'yandex#hybrid',
 				}}
 				width="100vw"
 				height="100vh"
