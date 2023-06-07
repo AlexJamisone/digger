@@ -1,44 +1,57 @@
 import { Link } from '@chakra-ui/next-js';
-import { Center, Icon, Stack } from '@chakra-ui/react';
-import { SignedIn, UserButton } from '@clerk/nextjs';
-import { BsYoutube } from 'react-icons/bs';
-import { SlSocialVkontakte } from 'react-icons/sl';
-import DzenIcon from '~/icons/DzenIcon';
+import { Button, Center, Stack, useMediaQuery } from '@chakra-ui/react';
+import { UserButton, useAuth } from '@clerk/nextjs';
 import Logo from '~/icons/Logo';
+import NavLink from '../Navigation/NavLink';
+import MobileMneu from './MobileMneu';
 
 const Navigation = () => {
+	const { isSignedIn } = useAuth();
+	const [isLower1069] = useMediaQuery(['(max-width: 1069px)']);
+
 	return (
-		<Center as="header" mx={36} h={20} bgColor="inherit">
+		<Center
+			as="header"
+			px={[15, 15, 36]}
+			h={20}
+			backdropFilter={'blur(4px)'}
+			position="fixed"
+			zIndex={99}
+			w="100%"
+		>
 			<Center
 				as="nav"
-				justifyContent="space-around"
+				justifyContent={isLower1069 ? 'space-between' : 'space-around'}
 				alignItems="center"
 				w="100%"
+				position="relative"
 			>
-				<Stack direction="row" gap={'200px'}>
-					<Link href="" target="_blank">
-						<DzenIcon boxSize={7} />
-					</Link>
-					<Link href="" target="_blank">
-						<Icon as={BsYoutube} boxSize={8} />
-					</Link>
-				</Stack>
+				{isLower1069 ? (
+					<Button
+						size="sm"
+						colorScheme="brand"
+						as={Link}
+						href="https://www.tinkoff.ru/cf/142W441ULA3"
+					>
+						Поддержать
+					</Button>
+				) : (
+					<NavLink position="first" />
+				)}
 				<Stack>
 					<Link href={'/'}>
 						<Logo boxSize={40} />
 					</Link>
 				</Stack>
-				<Stack direction="row" gap={'200px'}>
-					<Link href="" target="_blank">
-						<Icon as={SlSocialVkontakte} boxSize={8} />
-					</Link>
-					<Link href="" target="_blank">
-						<DzenIcon boxSize={7} />
-					</Link>
-				</Stack>
-				<SignedIn>
-					<UserButton afterSignOutUrl="/" />
-				</SignedIn>
+				{isLower1069 ? <MobileMneu /> : <NavLink position="second" />}
+				{isSignedIn ? (
+					<Stack
+						position={isLower1069 ? 'relative' : 'absolute'}
+						right={[0]}
+					>
+						<UserButton afterSignOutUrl="/" />
+					</Stack>
+				) : null}
 			</Center>
 		</Center>
 	);

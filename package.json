@@ -10,7 +10,9 @@
 		"start": "next start",
 		"prettier": "prettier --config .prettierrc --ignore-path .gitignore --write \"**/*.{js,jsx,json,md,ts,tsx}\"",
 		"typecheck": "tsc --noEmit",
-		"precommit": "npm run prettier && npm run typecheck && git add . && git commit"
+		"precommit": "npm run prettier && npm run typecheck && git add . && git commit",
+		"theme": "chakra-cli tokens src/chakra/theme.ts",
+		"theme:watch": "chakra-cli tokens src/chakra/theme.ts --watch"
 	},
 	"dependencies": {
 		"@chakra-ui/next-js": "^2.1.4",
@@ -42,6 +44,7 @@
 		"zod": "^3.21.4"
 	},
 	"devDependencies": {
+		"@chakra-ui/cli": "^2.4.1",
 		"@types/eslint": "^8.37.0",
 		"@types/node": "^18.16.0",
 		"@types/react": "^18.2.6",

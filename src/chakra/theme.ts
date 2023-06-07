@@ -1,9 +1,20 @@
 import { extendTheme, type ThemeConfig } from '@chakra-ui/react';
 
+//#00CC99
+
 const defultTheme: ThemeConfig = {
-	initialColorMode: 'light',
+	initialColorMode: 'dark',
 	disableTransitionOnChange: false,
-	useSystemColorMode: true,
+	useSystemColorMode: false,
 };
 
-export const theme = extendTheme({ defultTheme });
+const colors = {
+	brand: {
+		500: '#00CC99',
+	},
+};
+
+export const theme = extendTheme({
+	colors,
+	defultTheme,
+});
