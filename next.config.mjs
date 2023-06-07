@@ -22,7 +22,7 @@ const config = {
 		esmExternals: false
 	},
 	images: {
-		domains: ['https://uploadthing.com']
+		domains: ['uploadthing.com']
 	},
 	typescript: {
 		ignoreBuildErrors: true,

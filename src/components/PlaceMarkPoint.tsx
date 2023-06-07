@@ -1,4 +1,4 @@
-import { useDisclosure } from '@chakra-ui/react';
+import { Stack, useDisclosure } from '@chakra-ui/react';
 import { Placemark } from '@pbe/react-yandex-maps';
 import type { Point } from '@prisma/client';
 import { useMapsContext } from '~/context/mapsContext';
@@ -12,7 +12,12 @@ const PlaceMarkPoint = ({ point }: PlaceMarkPointProps) => {
 	const { dispatchSelect } = useMapsContext();
 	const { isOpen, onClose, onToggle } = useDisclosure();
 	return (
-		<>
+		<Stack
+			zIndex={99999}
+			position="relative"
+			cursor="pointer"
+			onClick={() => console.log('clic')}
+		>
 			<Placemark
 				geometry={[point.latitude, point.longitude]}
 				onClick={() => {
@@ -24,6 +29,7 @@ const PlaceMarkPoint = ({ point }: PlaceMarkPointProps) => {
 				}}
 				options={{
 					preset: isOpen ? 'islands#darkGreenIcon' : undefined,
+					draggable: true,
 				}}
 			/>
 			<PointCard
@@ -34,8 +40,9 @@ const PlaceMarkPoint = ({ point }: PlaceMarkPointProps) => {
 				info={<PointCard.Info />}
 				social={<PointCard.Social />}
 				action={<PointCard.Action />}
+				comments={<PointCard.Comments />}
 			/>
-		</>
+		</Stack>
 	);
 };
 

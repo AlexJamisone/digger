@@ -53,6 +53,10 @@ interface SetAllAction {
 	type: 'SET_ALL';
 	payload: PointState;
 }
+interface SetImgOldAction {
+	type: 'SET_IMG_WITH_OLD';
+	payload: string[];
+}
 
 export type Action =
 	| SetAllAction
@@ -65,7 +69,8 @@ export type Action =
 	| SetLongitudeAction
 	| SetLatitudeAction
 	| SetSetAction
-	| SetEditAction;
+	| SetEditAction
+	| SetImgOldAction;
 
 export const initialState: PointState = {
 	id: '',
@@ -86,9 +91,11 @@ export const pointReducer = (state: PointState, action: Action): PointState => {
 			return { ...state, name: action.payload };
 		case 'SET_DESC':
 			return { ...state, description: action.payload };
-		case 'SET_IMG':
+		case 'SET_IMG_WITH_OLD':
 			const newImageArray = [...state.image, ...action.payload];
 			return { ...state, image: newImageArray };
+		case 'SET_IMG':
+			return { ...state, image: action.payload };
 		case 'SET_VIDEO':
 			return { ...state, videoLink: action.payload };
 		case 'SET_LON':

@@ -5,19 +5,33 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
+generator client {
+    provider = "prisma-client-js"
+}
+
 model User {
     id   String @id
     role Role   @default(USER)
 }
 
 model Point {
-    id          String   @id @default(cuid())
+    id          String     @id @default(cuid())
     images      String[]
     name        String
     description String
     latitude    Float
     longitude   Float
     linkToVideo String
+    Comments    Comments[]
+}
+
+model Comments {
+    id      String @id @default(cuid())
+    content String
+    point   Point  @relation(fields: [pointId], references: [id], onDelete: Cascade)
+    pointId String
+
+    @@index([pointId])
 }
 
 enum Role {

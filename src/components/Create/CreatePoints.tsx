@@ -11,7 +11,7 @@ import type { ReactNode } from 'react';
 import { useMapsContext } from '~/context/mapsContext';
 import { api } from '~/utils/api';
 import PointsActions from './PointsActions';
-import PointsImages from './PointsImages';
+import PointsImages from './PointsImagesUpload';
 import { default as PointsInputs } from './PointsInputs';
 
 type CreatePointsProps = {
@@ -52,6 +52,7 @@ const CreatePoints = ({ action, images, inputs }: CreatePointsProps) => {
 				}}
 				as={motion.section}
 				layout
+				zIndex={999}
 			>
 				<ModalHeader textAlign="center">Новая точка</ModalHeader>
 				<ModalCloseButton />

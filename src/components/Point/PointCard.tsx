@@ -60,7 +60,7 @@ const PointCard = ({
 					}}
 					as={motion.section}
 				>
-					<ModalHeader textAlign="center">{point.name}</ModalHeader>
+					<ModalHeader textAlign="left">{point.name}</ModalHeader>
 					<ModalCloseButton />
 					<ModalBody>
 						<Stack gap={7}>
