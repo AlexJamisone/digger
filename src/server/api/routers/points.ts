@@ -37,11 +37,13 @@ export const pointsRouter = createTRPCRouter({
 		.input(
 			z.object({
 				id: z.string(),
-				images: z.array(z.string()),
+				images: z.array(z.string()).optional(),
 			})
 		)
 		.mutation(async ({ ctx, input }) => {
-			await utapi.deleteFiles(input.images);
+			if (input.images?.length !== 0 && input.images) {
+				await utapi.deleteFiles(input.images);
+			}
 			return await ctx.prisma.point.delete({
 				where: {
 					id: input.id,

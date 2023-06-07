@@ -1,19 +1,18 @@
-import { useDisclosure } from '@chakra-ui/react';
-import { Map, Placemark } from '@pbe/react-yandex-maps';
-import React, { useReducer, useState } from 'react';
+import { Map, Placemark, TypeSelector } from '@pbe/react-yandex-maps';
+import { useReducer } from 'react';
 import type { MapEvent } from 'yandex-maps';
 import MapsContex from '~/context/mapsContext';
 import { initialState, pointReducer } from '~/reducer/pointReducer';
+import { initialStateSelect, selectReducer } from '~/reducer/selecteReducer';
 import { api } from '~/utils/api';
 import CreatePoints from '../Create/CreatePoints';
-import PointCard from '../Point/PointCard';
+import PlaceMarkPoint from '../PlaceMarkPoint';
 
 const MapsObject = () => {
 	const { data: role } = api.user.get.useQuery();
 	const { data: points } = api.points.get.useQuery();
 	const [state, dispatch] = useReducer(pointReducer, initialState);
-	const [selectedCoords, setSelectedCoords] = useState<number[]>([]);
-	const { isOpen, onClose, onToggle } = useDisclosure();
+	const [c, dispatchSelect] = useReducer(selectReducer, initialStateSelect);
 	const handlClick = (event: MapEvent) => {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		const [latitude, longitude]: number[] = event.get('coords');
@@ -33,6 +32,8 @@ const MapsObject = () => {
 				state,
 				dispatch,
 				role,
+				dispatchSelect,
+				sel: c,
 			}}
 		>
 			<Map
@@ -43,8 +44,8 @@ const MapsObject = () => {
 				}}
 				state={{
 					center: [
-						state.latitude ?? selectedCoords[0] ?? 45.115365,
-						state.longitude ?? selectedCoords[1] ?? 34.563004,
+						state.latitude ?? c.coord[0] ?? 45.115365,
+						state.longitude ?? c.coord[1] ?? 34.563004,
 					],
 					zoom: 8.5,
 					type: 'yandex#hybrid',
@@ -61,33 +62,9 @@ const MapsObject = () => {
 						}}
 					/>
 				) : null}
+				<TypeSelector />
 				{points?.map((point) => (
-					<React.Fragment key={point.id}>
-						<Placemark
-							geometry={[point.latitude, point.longitude]}
-							onClick={() => {
-								onToggle();
-								setSelectedCoords([
-									point.latitude,
-									point.longitude,
-								]);
-							}}
-							options={{
-								preset: isOpen
-									? 'islands#darkGreenIcon'
-									: undefined,
-							}}
-						/>
-						<PointCard
-							isOpen={isOpen}
-							onClose={onClose}
-							point={point}
-							photo={<PointCard.Photo />}
-							info={<PointCard.Info />}
-							social={<PointCard.Social />}
-							action={<PointCard.Action />}
-						/>
-					</React.Fragment>
+					<PlaceMarkPoint key={point.id} point={point} />
 				))}
 			</Map>
 			<CreatePoints

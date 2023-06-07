@@ -7,8 +7,8 @@ import { api } from '~/utils/api';
 const PointAction = () => {
 	const { mutate: deletPoint, isLoading } = api.points.delete.useMutation();
 	const ctx = api.useContext();
-	const { dispatch } = useMapsContext();
-	const { point, onClose } = usePointContext();
+	const { dispatch, dispatchSelect } = useMapsContext();
+	const { point } = usePointContext();
 	const toast = useToast();
 	const handlButton = (
 		label: 'delet' | 'edit',
@@ -57,7 +57,9 @@ const PointAction = () => {
 						{
 							onSuccess: () => {
 								void ctx.points.invalidate();
-								onClose();
+								dispatchSelect({
+									type: 'SET_CLEAR',
+								});
 								toast({
 									description: 'Точка успешно удалена!',
 									isClosable: true,

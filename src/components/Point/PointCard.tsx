@@ -33,11 +33,11 @@ const PointCard = ({
 	info,
 	photo,
 	social,
-	isOpen,
-	onClose,
 	comments,
 	point,
 	action,
+	isOpen,
+	onClose,
 }: PointCardProps) => {
 	const { role } = useMapsContext();
 	return (

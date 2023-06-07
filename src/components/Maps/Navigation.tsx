@@ -15,8 +15,6 @@ const Navigation = () => {
 			px={[15, 15, 36]}
 			h={20}
 			backdropFilter={'blur(4px)'}
-			position="fixed"
-			zIndex={99}
 			w="100%"
 		>
 			<Center
