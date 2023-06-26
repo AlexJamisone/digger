@@ -3,6 +3,7 @@ on: [push, pull_request]
 
 env:
     DATABASE_URL: 'https://fake.com'
+    NEXT_PUBLIC_RECAPCHA_KEY_SITE: 'sitesecretkey'
 
 jobs:
     build:
