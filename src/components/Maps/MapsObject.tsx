@@ -1,9 +1,11 @@
-import { Map, Placemark, TypeSelector } from '@pbe/react-yandex-maps';
-import { useReducer } from 'react';
-import type { MapEvent } from 'yandex-maps';
+import { Map, Placemark, TypeSelector, useYMaps } from '@pbe/react-yandex-maps';
+import { useRouter } from 'next/router';
+import { useReducer, useState } from 'react';
+import type { MapEvent, Map as MapType } from 'yandex-maps';
 import MapsContex from '~/context/mapsContext';
 import { initialState, pointReducer } from '~/reducer/pointReducer';
 import { initialStateSelect, selectReducer } from '~/reducer/selecteReducer';
+import { useMap } from '~/stores/useMap';
 import { api } from '~/utils/api';
 import CreatePoints from '../Create/CreatePoints';
 import PlaceMarkPoint from '../PlaceMarkPoint';
@@ -13,6 +15,8 @@ const MapsObject = () => {
 	const { data: points } = api.points.get.useQuery();
 	const [state, dispatch] = useReducer(pointReducer, initialState);
 	const [c, dispatchSelect] = useReducer(selectReducer, initialStateSelect);
+	const [map, setMap] = useState<MapType | undefined>(undefined);
+	const router = useRouter();
 	const handlClick = (event: MapEvent) => {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		const [latitude, longitude]: number[] = event.get('coords');
@@ -26,6 +30,9 @@ const MapsObject = () => {
 			},
 		});
 	};
+	const yapi = useYMaps(['Layer']);
+	const time = useMap((state) => state.time);
+	const timemod = time === '1842' || time === '1941';
 	return (
 		<MapsContex.Provider
 			value={{
@@ -39,7 +46,6 @@ const MapsObject = () => {
 			<Map
 				defaultState={{
 					center: [45.115365, 34.563004],
-					zoom: 8.5,
 					type: 'yandex#hybrid',
 				}}
 				state={{
@@ -53,6 +59,29 @@ const MapsObject = () => {
 				width="100vw"
 				height="100vh"
 				onClick={role === 'ADMIN' ? handlClick : null}
+				instanceRef={(ref) => {
+					const valid = yapi && ref;
+					if (valid) {
+						const layer1842 = new yapi.Layer(
+							'https://api.maptiler.com/tiles/d185ab68-b6a2-43a3-ad09-bbdabc4dae06/%z/%x/%y.webp?key=7D3WMyA8HBZbuCxHcNFn'
+						);
+						const layer1941 = new yapi.Layer(
+							'https://api.maptiler.com/tiles/42dfaa3f-e16d-4869-aeb7-a0ca0a9e4049/%z/%x/%y.webp?key=27REPdqiPDdr26KGbYAr'
+						);
+
+						if (time === '1842') {
+							ref.layers.add(layer1842);
+						}
+						if (time === '1941' && valid) {
+							ref.layers.add(layer1941);
+						}
+					}
+				}}
+				options={{
+					restrictMapArea: timemod ? true : undefined,
+					maxZoom: timemod ? 13 : undefined,
+					minZoom: timemod ? 6 : undefined,
+				}}
 			>
 				{state.isSet ? (
 					<Placemark
