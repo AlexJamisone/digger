@@ -1,7 +1,6 @@
 import { Map, Placemark, TypeSelector, useYMaps } from '@pbe/react-yandex-maps';
-import { useRouter } from 'next/router';
-import { useReducer, useState } from 'react';
-import type { MapEvent, Map as MapType } from 'yandex-maps';
+import { useReducer } from 'react';
+import type { MapEvent } from 'yandex-maps';
 import MapsContex from '~/context/mapsContext';
 import { initialState, pointReducer } from '~/reducer/pointReducer';
 import { initialStateSelect, selectReducer } from '~/reducer/selecteReducer';
@@ -15,8 +14,6 @@ const MapsObject = () => {
 	const { data: points } = api.points.get.useQuery();
 	const [state, dispatch] = useReducer(pointReducer, initialState);
 	const [c, dispatchSelect] = useReducer(selectReducer, initialStateSelect);
-	const [map, setMap] = useState<MapType | undefined>(undefined);
-	const router = useRouter();
 	const handlClick = (event: MapEvent) => {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		const [latitude, longitude]: number[] = event.get('coords');
@@ -47,13 +44,14 @@ const MapsObject = () => {
 				defaultState={{
 					center: [45.115365, 34.563004],
 					type: 'yandex#hybrid',
+					zoom: 9,
 				}}
 				state={{
 					center: [
 						state.latitude ?? c.coord[0] ?? 45.115365,
 						state.longitude ?? c.coord[1] ?? 34.563004,
 					],
-					zoom: 8.5,
+					zoom: 9,
 					type: 'yandex#hybrid',
 				}}
 				width="100vw"
@@ -78,7 +76,7 @@ const MapsObject = () => {
 					}
 				}}
 				options={{
-					restrictMapArea: timemod ? true : undefined,
+					mapAutoFocus: true,
 					maxZoom: timemod ? 13 : undefined,
 					minZoom: timemod ? 6 : undefined,
 				}}
