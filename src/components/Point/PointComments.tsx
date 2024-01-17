@@ -27,7 +27,7 @@ const PointComments = () => {
 	const { data: comments, isLoading: loadingGet } = api.comments.get.useQuery(
 		{
 			id: point.id,
-		}
+		},
 	);
 	const {
 		mutate: create,
@@ -74,7 +74,7 @@ const PointComments = () => {
 							errorRecap: false,
 						});
 					},
-				}
+				},
 			);
 			console.log('create');
 		}
@@ -189,7 +189,7 @@ const PointComments = () => {
 											>
 												Отправлено:{' '}
 												{dayjs(createdAt).format(
-													'DD.MM.YYYY HH:mm'
+													'DD.MM.YYYY HH:mm',
 												)}
 											</Text>
 										</Stack>

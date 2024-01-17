@@ -20,7 +20,7 @@ export function useMapsContext() {
 	const context = useContext(MapsContex);
 	if (!context)
 		throw new Error(
-			'Maps.* component must be render as a child of Maps comopnent'
+			'Maps.* component must be render as a child of Maps comopnent',
 		);
 	return context;
 }

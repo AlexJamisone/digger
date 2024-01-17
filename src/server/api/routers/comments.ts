@@ -6,7 +6,7 @@ export const commentsRouter = createTRPCRouter({
 		.input(
 			z.object({
 				id: z.string(),
-			})
+			}),
 		)
 		.query(async ({ ctx, input }) => {
 			return await ctx.prisma.comments.findMany({
@@ -26,7 +26,7 @@ export const commentsRouter = createTRPCRouter({
 					message: 'Нельзя отправить пустой комметарий',
 				}),
 				pointId: z.string().nonempty(),
-			})
+			}),
 		)
 		.mutation(async ({ ctx, input }) => {
 			return ctx.prisma.comments.create({

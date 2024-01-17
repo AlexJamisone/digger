@@ -44,7 +44,7 @@ const PointsInputs = () => {
 						/>
 						<FormErrorMessage>{error}</FormErrorMessage>
 					</FormControl>
-				)
+				),
 			)}
 		</Stack>
 	);

@@ -13,7 +13,7 @@ const PointAction = () => {
 	const handlButton = (
 		label: 'delet' | 'edit',
 		onClick: () => void,
-		isLoading?: boolean
+		isLoading?: boolean,
 	) => {
 		return (
 			<IconButton
@@ -67,10 +67,10 @@ const PointAction = () => {
 									status: 'success',
 								});
 							},
-						}
+						},
 					);
 				},
-				isLoading
+				isLoading,
 			)}
 		</Stack>
 	);

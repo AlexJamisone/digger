@@ -1,57 +1,26 @@
 import { Link } from '@chakra-ui/next-js';
-import { Button, Center, Stack, useMediaQuery } from '@chakra-ui/react';
+import {   Stack } from '@chakra-ui/react';
 import { UserButton, useAuth } from '@clerk/nextjs';
 import Logo from '~/icons/Logo';
 import MenuNavigation from '../Navigation/MenuNavigation';
-import NavLink from '../Navigation/NavLink';
-import SelectMap from '../SelectMap';
+import SponserButton from '../Navigation/SponserButton';
 
 const Navigation = () => {
 	const { isSignedIn } = useAuth();
-	const [isLower1069] = useMediaQuery(['(max-width: 1069px)']);
 	return (
-		<Stack direction={['column', 'row']} alignItems="center" pb={[5, 0]}>
-			<Center as="header" px={[15, 15, 36]} h={70} w="100%">
-				<Center
-					as="nav"
-					justifyContent={
-						isLower1069 ? 'space-between' : 'space-around'
-					}
-					alignItems="center"
-					w="100%"
-					position="relative"
-				>
-					{isLower1069 ? (
-						<Button
-							size="sm"
-							colorScheme="brand"
-							as={Link}
-							href="https://www.tinkoff.ru/cf/142W441ULA3"
-						>
-							Поддержать
-						</Button>
-					) : (
-						<NavLink position="first" />
-					)}
-					<Stack>
-						<Link href={'/'}>
-							<Logo boxSize={40} />
-						</Link>
-					</Stack>
-					<MenuNavigation />
-					{isSignedIn && (
-						<Stack
-							position={isLower1069 ? 'relative' : 'absolute'}
-							right={[0]}
-						>
-							<UserButton afterSignOutUrl="/" />
-						</Stack>
-					)}
-				</Center>
-			</Center>
-			<SelectMap />
-		</Stack>
+       <Stack as={'header'} justifyContent='center' h={75}  alignItems={'center'}>
+           <Stack as={'nav'} alignItems={'center'} direction='row' justifyContent={'center'} gap={'50px'}>
+                <SponserButton/>
+                <Link href={'/'}>
+                    <Logo h={150} w={150}/>
+                </Link> 
+                <MenuNavigation/>
+                {isSignedIn && <UserButton/>}
+           </Stack> 
+       </Stack> 
 	);
 };
 
 export default Navigation;
+
+

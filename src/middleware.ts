@@ -9,7 +9,7 @@ import { ratelimit } from './server/helpers/ratelimits';
 export default withClerkMiddleware(
 	async (
 		request: NextRequest,
-		event: NextFetchEvent
+		event: NextFetchEvent,
 	): Promise<Response | undefined> => {
 		const ip = request.ip ?? '127.0.0.1';
 
@@ -25,7 +25,7 @@ export default withClerkMiddleware(
 		res.headers.set('X-RateLimit-Remaining', remaining.toString());
 		res.headers.set('X-RateLimit-Reset', reset.toString());
 		return res;
-	}
+	},
 );
 
 export const config = {

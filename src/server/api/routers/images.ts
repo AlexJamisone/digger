@@ -7,7 +7,7 @@ export const imageRouter = createTRPCRouter({
 		.input(
 			z.object({
 				src: z.string(),
-			})
+			}),
 		)
 		.mutation(async ({ input }) => {
 			return await utapi.deleteFiles(input.src);
@@ -16,7 +16,7 @@ export const imageRouter = createTRPCRouter({
 		.input(
 			z.object({
 				images: z.array(z.string()),
-			})
+			}),
 		)
 		.mutation(async ({ input }) => {
 			return await utapi.deleteFiles(input.images);

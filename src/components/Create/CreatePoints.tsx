@@ -36,7 +36,7 @@ const CreatePoints = ({ action, images, inputs }: CreatePointsProps) => {
 							onSuccess: () => {
 								dispatch({ type: 'SET_CLEAR' });
 							},
-						}
+						},
 					);
 				}
 				dispatch({ type: 'SET_CLEAR' });

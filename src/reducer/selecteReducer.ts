@@ -24,7 +24,7 @@ export const initialStateSelect: SelectedCoords = {
 
 export const selectReducer = (
 	state: SelectedCoords,
-	action: Action
+	action: Action,
 ): SelectedCoords => {
 	switch (action.type) {
 		case 'SET_COORDS':

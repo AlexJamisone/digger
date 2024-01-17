@@ -36,7 +36,7 @@ const PointsActions = () => {
 									});
 									dispatch({ type: 'SET_CLEAR' });
 								},
-							}
+							},
 						);
 					} else {
 						create(
@@ -58,7 +58,7 @@ const PointsActions = () => {
 									});
 									dispatch({ type: 'SET_CLEAR' });
 								},
-							}
+							},
 						);
 					}
 				}}
@@ -80,7 +80,7 @@ const PointsActions = () => {
 								onSuccess: () => {
 									dispatch({ type: 'SET_CLEAR' });
 								},
-							}
+							},
 						);
 					} else if (state.edit) {
 						dispatch({

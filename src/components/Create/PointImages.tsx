@@ -32,7 +32,7 @@ const PointImages = ({ src }: PointImageProps) => {
 						position: 'top-right',
 					});
 				},
-			}
+			},
 		);
 	};
 	return (

@@ -19,7 +19,7 @@ export const pointsRouter = createTRPCRouter({
 				latitude: z.number(),
 				longitude: z.number(),
 				linkToVideo: z.string(),
-			})
+			}),
 		)
 		.mutation(async ({ ctx, input }) => {
 			return await ctx.prisma.point.create({
@@ -38,7 +38,7 @@ export const pointsRouter = createTRPCRouter({
 			z.object({
 				id: z.string(),
 				images: z.array(z.string()),
-			})
+			}),
 		)
 		.mutation(async ({ ctx, input }) => {
 			await utapi.deleteFiles(input.images);
@@ -58,7 +58,7 @@ export const pointsRouter = createTRPCRouter({
 				latitude: z.number(),
 				longitude: z.number(),
 				linkToVideo: z.string(),
-			})
+			}),
 		)
 		.mutation(async ({ ctx, input }) => {
 			return await ctx.prisma.point.update({

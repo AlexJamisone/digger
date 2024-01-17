@@ -13,11 +13,9 @@ const NavLink = ({
 	return (
 		<>
 			{mobile && position === 'all' ? (
-				<Stack direction="column" gap={5}>
-				</Stack>
+				<Stack direction="column" gap={5}></Stack>
 			) : (
-				<Stack direction="row" spacing={100}>
-				</Stack>
+				<Stack direction="row" spacing={100}></Stack>
 			)}
 		</>
 	);

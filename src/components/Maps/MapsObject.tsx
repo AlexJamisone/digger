@@ -61,10 +61,10 @@ const MapsObject = () => {
 					const valid = yapi && ref;
 					if (valid) {
 						const layer1842 = new yapi.Layer(
-							'https://api.maptiler.com/tiles/d185ab68-b6a2-43a3-ad09-bbdabc4dae06/%z/%x/%y.webp?key=7D3WMyA8HBZbuCxHcNFn'
+							'https://api.maptiler.com/tiles/d185ab68-b6a2-43a3-ad09-bbdabc4dae06/%z/%x/%y.webp?key=7D3WMyA8HBZbuCxHcNFn',
 						);
 						const layer1941 = new yapi.Layer(
-							'https://api.maptiler.com/tiles/42dfaa3f-e16d-4869-aeb7-a0ca0a9e4049/%z/%x/%y.webp?key=27REPdqiPDdr26KGbYAr'
+							'https://api.maptiler.com/tiles/42dfaa3f-e16d-4869-aeb7-a0ca0a9e4049/%z/%x/%y.webp?key=27REPdqiPDdr26KGbYAr',
 						);
 
 						if (time === '1842') {

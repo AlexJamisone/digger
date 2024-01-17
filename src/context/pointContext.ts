@@ -12,7 +12,7 @@ export function usePointContext() {
 	const context = useContext(PointContex);
 	if (!context)
 		throw new Error(
-			'Point.* component must be render as a child of Point comopnent'
+			'Point.* component must be render as a child of Point comopnent',
 		);
 	return context;
 }
