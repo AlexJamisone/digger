@@ -17,7 +17,7 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { RiMenu4Fill, RiMenuLine } from 'react-icons/ri';
 import { links } from '~/constants/links';
-import { useMap } from '~/stores/useMap';
+import { MapState, useMap } from '~/stores/useMap';
 
 const MenuNavigation = () => {
 	const { setTime, time } = useMap();
@@ -57,7 +57,7 @@ const MenuNavigation = () => {
 									setTime(value as MapState['time']);
 								}
 							}}
-                            defaultValue={'now'}
+							defaultValue={'now'}
 						>
 							<MenuItemOption value="now">
 								Наше время
@@ -69,7 +69,7 @@ const MenuNavigation = () => {
 								Крым 1941 год
 							</MenuItemOption>
 						</MenuOptionGroup>
-                        <MenuDivider/>
+						<MenuDivider />
 						<MenuGroup title="Мои соц. сети">
 							{links.map(({ id, icon, href, title, color }) => (
 								<MenuItem

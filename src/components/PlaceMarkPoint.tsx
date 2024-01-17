@@ -1,8 +1,9 @@
-import { Stack, useDisclosure } from '@chakra-ui/react';
+import { Center, Stack, useDisclosure } from '@chakra-ui/react';
 import { Placemark } from '@pbe/react-yandex-maps';
 import type { Point } from '@prisma/client';
 import { useMapsContext } from '~/context/mapsContext';
 import PointCard from './Point/PointCard';
+import PointDrawer from './Point/PointDrawer';
 
 type PlaceMarkPointProps = {
 	point: Point;
@@ -31,16 +32,7 @@ const PlaceMarkPoint = ({ point }: PlaceMarkPointProps) => {
 					preset: isOpen ? 'islands#darkGreenIcon' : undefined,
 				}}
 			/>
-			<PointCard
-				isOpen={isOpen}
-				onClose={onClose}
-				point={point}
-				photo={<PointCard.Photo />}
-				info={<PointCard.Info />}
-				social={<PointCard.Social />}
-				action={<PointCard.Action />}
-				comments={<PointCard.Comments />}
-			/>
+			<PointDrawer isOpen={isOpen} onClose={onClose} point={point} />
 		</Stack>
 	);
 };

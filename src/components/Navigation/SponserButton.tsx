@@ -7,10 +7,10 @@ const SponserButton = () => {
 			size="sm"
 			colorScheme="brand"
 			as={Link}
-            _hover={{
-                textDecoration: 'none'
-            }}
-            target='_blank'
+			_hover={{
+				textDecoration: 'none',
+			}}
+			target="_blank"
 			href="https://www.tinkoff.ru/cf/142W441ULA3"
 		>
 			Поддержать
