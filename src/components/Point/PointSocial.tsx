@@ -10,6 +10,7 @@ const PointSocial = () => {
 			rightIcon={<DzenIcon boxSize={5} color="blackAlpha.800" />}
 			target="_blank"
 			w="100%"
+            size={'sm'}
 			_hover={{
 				textDecoration: 'none',
 			}}

@@ -76,7 +76,6 @@ const PointComments = () => {
 					},
 				},
 			);
-			console.log('create');
 		}
 	};
 	return (
@@ -94,7 +93,11 @@ const PointComments = () => {
 								errorRecap: false,
 							});
 						}}
-						placeholder="Добавь свои комментарии"
+						h={'50px'}
+						placeholder="Оставь свой комментарий"
+						_placeholder={{
+							fontSize: '12px',
+						}}
 					/>
 					<FormErrorMessage>
 						{error?.data?.zodError?.fieldErrors.content}
@@ -143,6 +146,7 @@ const PointComments = () => {
 				isDisabled={isLoading}
 				type="button"
 				mt={3}
+				size={'sm'}
 			>
 				Оставить комметарий
 			</Button>
@@ -178,7 +182,7 @@ const PointComments = () => {
 							}}
 						>
 							<Stack direction="row">
-								<Avatar size="xs" />
+								<Avatar size="sm" />
 								<Card borderTopLeftRadius={0}>
 									<CardBody>
 										<Stack>

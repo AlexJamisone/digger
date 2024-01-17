@@ -44,7 +44,6 @@ const PointCard = ({
 		<PointContex.Provider
 			value={{
 				point,
-				onClose,
 			}}
 		>
 			<Modal

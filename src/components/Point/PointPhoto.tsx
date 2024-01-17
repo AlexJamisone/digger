@@ -1,48 +1,120 @@
-import { Image, Link, Spinner, Stack } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
-import 'lightgallery/css/lg-thumbnail.css';
-import 'lightgallery/css/lg-zoom.css';
-import 'lightgallery/css/lightgallery.css';
-import lgZoom from 'lightgallery/plugins/zoom';
-import LightGallery from 'lightgallery/react';
+import {
+	MdOutlineKeyboardArrowLeft,
+	MdOutlineKeyboardArrowRight,
+} from 'react-icons/md';
+import { Icon, IconButton, Image, Skeleton, Stack } from '@chakra-ui/react';
+import useEmblaCarousel from 'embla-carousel-react';
+import { useCallback, useEffect, useState } from 'react';
+import { IconType } from 'react-icons';
 import { usePointContext } from '~/context/pointContext';
 
 const PointPhoto = () => {
 	const { point } = usePointContext();
-	return (
-		<Stack
-			as={LightGallery}
-			mode="lg-slide"
-			addClass="lightbox"
-			plugins={[lgZoom]}
-			download={false}
-		>
-			{point.images.map((name, index) => (
-				<Link
-					data-src={`https://uploadthing.com/f/${name}`}
-					href={`https://uploadthing.com/f/${name}`}
-					key={index}
-					data-sub-html="<p></p>"
-					justifyContent="center"
-					display="flex"
-					as={motion.a}
-					whileHover={{
-						scale: 1.1,
-						transition: {
-							type: 'spring',
-							duration: 0.5,
-						},
-					}}
-				>
-					<Image
-						alt={`${name}`}
-						src={`https://uploadthing.com/f/${name}`}
-						fallback={<Spinner />}
-						w={'50%'}
-						h={'100%'}
+	const [selectedIndex, setSelectedIndex] = useState(0);
+	const [emblaRef, emblaApi] = useEmblaCarousel({
+		startIndex: 0,
+	});
+	const [emblaThumbRef, emblaThumbApi] = useEmblaCarousel({
+		dragFree: true,
+		containScroll: 'keepSnaps',
+	});
+	const onThumbClick = useCallback(
+		(index: number) => {
+			if (!emblaApi || !emblaThumbApi) return;
+			emblaApi.scrollTo(index);
+		},
+		[emblaApi, emblaThumbApi],
+	);
+	const btnControl = ({
+		position,
+		action,
+		icon,
+	}: {
+		position: 'right' | 'left';
+		action: () => void;
+		icon: IconType;
+	}) => {
+		return (
+			<>
+				{((position === 'right' && emblaApi?.canScrollNext()) ||
+					(position === 'left' && emblaApi?.canScrollPrev())) && (
+					<IconButton
+						position="absolute"
+						variant="ghost"
+						size="sm"
+						aria-label="prev"
+						icon={<Icon as={icon} boxSize={7} />}
+						top="30%"
+						left={position === 'left' ? 5 : undefined}
+						right={position === 'right' ? 5 : undefined}
+						rounded="full"
+						onClick={() => action()}
 					/>
-				</Link>
-			))}
+				)}
+			</>
+		);
+	};
+	const onSelect = useCallback(() => {
+		if (!emblaApi || !emblaThumbApi) return;
+		setSelectedIndex(emblaApi.selectedScrollSnap());
+		emblaThumbApi.scrollTo(emblaApi.selectedScrollSnap());
+	}, [emblaApi, emblaThumbApi]);
+	useEffect(() => {
+		if (!emblaApi) return;
+		onSelect();
+		emblaApi.on('select', onSelect);
+		emblaApi.on('reInit', onSelect);
+	}, [emblaApi, onSelect]);
+
+	return (
+		<Stack>
+			<Stack ref={emblaRef} overflow={'hidden'}>
+				<Stack display={'flex'} direction={'row'}>
+					{point.images.map((src) => (
+						<Image
+							src={`https://uploadthing.com/f/${src}`}
+							key={src}
+							flex={'0 0 100%'}
+							minW={0}
+							w={450}
+							h={260}
+							objectFit="contain"
+							fallback={<Skeleton w={450} h={260} />}
+						/>
+					))}
+				</Stack>
+				{btnControl({
+					position: 'left',
+					action: () => emblaApi?.scrollPrev(),
+					icon: MdOutlineKeyboardArrowLeft,
+				})}
+				{btnControl({
+					position: 'right',
+					action: () => emblaApi?.scrollNext(),
+					icon: MdOutlineKeyboardArrowRight,
+				})}
+			</Stack>
+			<Stack
+				ref={emblaThumbRef}
+				direction="row"
+				justifyContent="center"
+				overflow="hidden"
+			>
+				{point.images.map((src, index) => (
+					<Image
+						fallback={<Skeleton w={50} h={25} />}
+						alt={`${src}`}
+						src={`https://uploadthing.com/f/${src}`}
+						key={src}
+						w={50}
+						h={25}
+						cursor="pointer"
+						onClick={() => onThumbClick(index)}
+						opacity={index === selectedIndex ? 1 : 0.5}
+						transition="opacity .2s ease-in-out"
+					/>
+				))}
+			</Stack>
 		</Stack>
 	);
 };

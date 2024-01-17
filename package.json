@@ -32,6 +32,7 @@
 		"@upstash/ratelimit": "^0.4.3",
 		"@upstash/redis": "^1.21.0",
 		"dayjs": "^1.11.8",
+		"embla-carousel-react": "^8.0.0-rc19",
 		"framer-motion": "^10.12.16",
 		"lightgallery": "^2.7.1",
 		"next": "^13.4.2",
