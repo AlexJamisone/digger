@@ -1,22 +1,8 @@
 import { Link } from '@chakra-ui/next-js';
-import {
-	Button,
-	Center,
-	Divider,
-	Icon,
-	IconButton,
-	Menu,
-	MenuButton,
-	MenuItem,
-	MenuList,
-	Stack,
-	Text,
-	useMediaQuery,
-} from '@chakra-ui/react';
+import { Button, Center, Stack, useMediaQuery } from '@chakra-ui/react';
 import { UserButton, useAuth } from '@clerk/nextjs';
-import { RiMenu4Fill, RiMenuLine } from 'react-icons/ri';
-import { links } from '~/constants/links';
 import Logo from '~/icons/Logo';
+import MenuNavigation from '../Navigation/MenuNavigation';
 import NavLink from '../Navigation/NavLink';
 import SelectMap from '../SelectMap';
 
@@ -52,51 +38,7 @@ const Navigation = () => {
 							<Logo boxSize={40} />
 						</Link>
 					</Stack>
-					<Menu autoSelect={false}>
-						{({ isOpen }) => (
-							<>
-								<MenuButton
-									as={IconButton}
-									variant={'outline'}
-									icon={<Icon as={isOpen ? RiMenu4Fill : RiMenuLine} />}
-									size={'sm'}
-									aria-label="menu"
-								/>
-								<MenuList>
-									<Text p={2} textAlign={'center'}>
-										Соц. сети
-									</Text>
-									<Divider />
-									{links.map(
-										({ id, icon, href, title, color }) => (
-											<MenuItem
-												as={Link}
-												key={id}
-												href={href}
-												target="_blank"
-												_hover={{
-													textDecoration: 'none',
-													bgColor: color,
-													textColor: 'white',
-												}}
-												transition={
-													'all .3s ease-in-out'
-												}
-											>
-												<Stack
-													direction={'row'}
-													alignItems={'center'}
-												>
-													<Icon as={icon} />
-													<Text>{title}</Text>
-												</Stack>
-											</MenuItem>
-										)
-									)}
-								</MenuList>
-							</>
-						)}
-					</Menu>
+					<MenuNavigation />
 					{isSignedIn && (
 						<Stack
 							position={isLower1069 ? 'relative' : 'absolute'}
