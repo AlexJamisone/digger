@@ -2,7 +2,6 @@ import { Center, Stack, useDisclosure } from '@chakra-ui/react';
 import { Placemark } from '@pbe/react-yandex-maps';
 import type { Point } from '@prisma/client';
 import { useMapsContext } from '~/context/mapsContext';
-import PointCard from './Point/PointCard';
 import PointDrawer from './Point/PointDrawer';
 
 type PlaceMarkPointProps = {
@@ -17,7 +16,6 @@ const PlaceMarkPoint = ({ point }: PlaceMarkPointProps) => {
 			zIndex={99999}
 			position="relative"
 			cursor="pointer"
-			onClick={() => console.log('clic')}
 		>
 			<Placemark
 				geometry={[point.latitude, point.longitude]}

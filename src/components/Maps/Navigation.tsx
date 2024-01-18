@@ -19,11 +19,11 @@ const Navigation = () => {
 				alignItems={'center'}
 				direction="row"
 				justifyContent={'center'}
-				gap={'50px'}
+				gap={[25, 50]}
 			>
 				<SponserButton />
 				<Link href={'/'}>
-					<Logo h={150} w={150} />
+					<Logo h={[100, 150]} w={[100, 150]} />
 				</Link>
 				<MenuNavigation />
 				{isSignedIn && <UserButton afterSignOutUrl="/" />}

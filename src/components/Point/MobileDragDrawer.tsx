@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ReactNode } from 'react';
+import { useHelpers } from '~/stores/useHelpers';
 
 const MobileDragDrawer = ({
 	children,
@@ -8,29 +9,22 @@ const MobileDragDrawer = ({
 	children: ReactNode;
 	onClose: () => void;
 }) => {
-    console.log('render mobile')
+    const is = useHelpers(state => state.isCarosel)
+    console.log(is)
 	return (
 		<motion.div
-			style={{
-				width: '100%',
-				borderRadius: 30,
-				backgroundColor: '#fff',
-				zIndex: 120,
-			}}
-			drag="y"
-			onDragEnd={(e) => {
-				console.log(e);
-				onClose();
-			}}
-			dragConstraints={{
-				top: 0,
-				bottom: 125,
-			}}
-			dragTransition={{
-				bounceStiffness: 600,
-				bounceDamping: 20,
-			}}
-			dragElastic={0.5}
+            drag={!is ? 'y' : undefined}
+            dragConstraints={{
+                top: 0,
+                bottom: 250
+            }}
+            dragElastic={0.5}
+            onDragEnd={(e, info) => {
+                e.stopPropagation()
+                if(info.offset.y > 15) {
+                    onClose()
+                }
+            }}
 		>
 			{children}
 		</motion.div>

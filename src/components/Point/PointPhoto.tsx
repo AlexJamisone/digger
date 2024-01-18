@@ -7,9 +7,11 @@ import useEmblaCarousel from 'embla-carousel-react';
 import { useCallback, useEffect, useState } from 'react';
 import { IconType } from 'react-icons';
 import { usePointContext } from '~/context/pointContext';
+import { useHelpers } from '~/stores/useHelpers';
 
 const PointPhoto = () => {
 	const { point } = usePointContext();
+    const setIs = useHelpers((state) => state.setIsCarosel)
 	const [selectedIndex, setSelectedIndex] = useState(0);
 	const [emblaRef, emblaApi] = useEmblaCarousel({
 		startIndex: 0,
@@ -40,13 +42,13 @@ const PointPhoto = () => {
 					(position === 'left' && emblaApi?.canScrollPrev())) && (
 					<IconButton
 						position="absolute"
-						variant="ghost"
-						size="sm"
+						variant="solid"
+						size="xs"
 						aria-label="prev"
 						icon={<Icon as={icon} boxSize={7} />}
-						top="30%"
-						left={position === 'left' ? 5 : undefined}
-						right={position === 'right' ? 5 : undefined}
+						top="40%"
+						left={position === 'left' ? 0 : undefined}
+						right={position === 'right' ? 0 : undefined}
 						rounded="full"
 						onClick={() => action()}
 					/>
@@ -67,8 +69,8 @@ const PointPhoto = () => {
 	}, [emblaApi, onSelect]);
 
 	return (
-		<Stack>
-			<Stack ref={emblaRef} overflow={'hidden'}>
+		<Stack onTouchStart={() => setIs(true)} onTouchEnd={() => setIs(false)}>
+			<Stack ref={emblaRef} overflow={'hidden'} position="relative" >
 				<Stack display={'flex'} direction={'row'}>
 					{point.images.map((src) => (
 						<Image
