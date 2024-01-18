@@ -10,8 +10,8 @@ const PointSocial = () => {
 			href={point.linkToVideo}
 			rightIcon={<DzenIcon boxSize={4} color="blackAlpha.800" />}
 			target="_blank"
-            variant={'outline'}
-            p={2}
+			variant={'outline'}
+			p={2}
 			_hover={{
 				textDecoration: 'none',
 			}}

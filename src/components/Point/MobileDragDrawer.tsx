@@ -9,22 +9,21 @@ const MobileDragDrawer = ({
 	children: ReactNode;
 	onClose: () => void;
 }) => {
-    const is = useHelpers(state => state.isCarosel)
-    console.log(is)
+	const is = useHelpers((state) => state.isCarosel);
 	return (
 		<motion.div
-            drag={!is ? 'y' : undefined}
-            dragConstraints={{
-                top: 0,
-                bottom: 250
-            }}
-            dragElastic={0.5}
-            onDragEnd={(e, info) => {
-                e.stopPropagation()
-                if(info.offset.y > 15) {
-                    onClose()
-                }
-            }}
+			drag={!is ? 'y' : undefined}
+			dragConstraints={{
+				top: 0,
+				bottom: 250,
+			}}
+			dragElastic={0.5}
+			onDragEnd={(e, info) => {
+				e.stopPropagation();
+				if (info.offset.y > 15) {
+					onClose();
+				}
+			}}
 		>
 			{children}
 		</motion.div>

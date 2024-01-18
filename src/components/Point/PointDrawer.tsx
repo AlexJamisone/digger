@@ -1,4 +1,4 @@
-import {  Drawer, useMediaQuery } from '@chakra-ui/react';
+import { Drawer, useMediaQuery } from '@chakra-ui/react';
 import { Point } from '@prisma/client';
 import DrawerInner from './DrawerInner';
 import MobileDragDrawer from './MobileDragDrawer';
@@ -13,10 +13,10 @@ const PointDrawer = ({ isOpen, onClose, point }: PointDrawerProps) => {
 		<Drawer isOpen={isOpen} onClose={onClose} placement="bottom">
 			{isLowerThen400 ? (
 				<MobileDragDrawer onClose={onClose}>
-					<DrawerInner point={point} />
+					<DrawerInner point={point} onClose={onClose} />
 				</MobileDragDrawer>
 			) : (
-				<DrawerInner point={point} />
+				<DrawerInner point={point} onClose={onClose} />
 			)}
 		</Drawer>
 	);

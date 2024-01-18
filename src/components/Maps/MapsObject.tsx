@@ -55,7 +55,7 @@ const MapsObject = () => {
 					type: 'yandex#hybrid',
 				}}
 				width="100vw"
-				height="100vh"
+				height="100svh"
 				onClick={role === 'ADMIN' ? handlClick : null}
 				instanceRef={(ref) => {
 					const valid = yapi && ref;

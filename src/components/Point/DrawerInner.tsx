@@ -15,13 +15,23 @@ import PointPhoto from './PointPhoto';
 import PointSocial from './PointSocial';
 import PointComments from './PointComments';
 import { Link } from '@chakra-ui/next-js';
+import { api } from '~/utils/api';
+import PointAction from './PointAction';
 
-const DrawerInner = ({ point }: { point: Point }) => {
+const DrawerInner = ({
+	point,
+	onClose,
+}: {
+	point: Point;
+	onClose: () => void;
+}) => {
 	const [isLowerThen400] = useMediaQuery(['(max-width: 400px)']);
+	const { data: role } = api.user.getRole.useQuery();
 	return (
 		<PointContex.Provider
 			value={{
 				point,
+				onClose,
 			}}
 		>
 			<DrawerContent borderTopRadius={12} width={450} h={[450, '100%']}>
@@ -68,6 +78,7 @@ const DrawerInner = ({ point }: { point: Point }) => {
 					</Text>
 					<PointSocial />
 					<PointComments />
+					{role && <PointAction />}
 				</DrawerBody>
 			</DrawerContent>
 		</PointContex.Provider>

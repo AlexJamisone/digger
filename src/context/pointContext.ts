@@ -3,6 +3,7 @@ import { createContext, useContext } from 'react';
 
 export interface PointContext {
 	point: Point;
+	onClose: () => void;
 }
 
 const PointContex = createContext<PointContext | null>(null);

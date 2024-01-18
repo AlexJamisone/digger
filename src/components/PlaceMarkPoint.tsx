@@ -12,11 +12,7 @@ const PlaceMarkPoint = ({ point }: PlaceMarkPointProps) => {
 	const { dispatchSelect } = useMapsContext();
 	const { isOpen, onClose, onToggle } = useDisclosure();
 	return (
-		<Stack
-			zIndex={99999}
-			position="relative"
-			cursor="pointer"
-		>
+		<Stack zIndex={99999} position="relative" cursor="pointer">
 			<Placemark
 				geometry={[point.latitude, point.longitude]}
 				onClick={() => {

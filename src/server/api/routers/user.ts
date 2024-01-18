@@ -1,3 +1,4 @@
+import { TRPCError } from '@trpc/server';
 import { createTRPCRouter, publicProcedure } from '~/server/api/trpc';
 
 export const userRouter = createTRPCRouter({
@@ -13,6 +14,21 @@ export const userRouter = createTRPCRouter({
 				data: {
 					id: ctx.userId,
 				},
+			});
+		return user.role;
+	}),
+	getRole: publicProcedure.query(async ({ ctx }) => {
+		if (!ctx.userId) return null;
+		const user = await ctx.prisma.user.findUnique({
+			where: {
+				id: ctx.userId,
+			},
+		});
+		if (!user)
+			return new TRPCError({
+				code: 'NOT_FOUND',
+				cause: 'NOT_FOUND',
+				message: 'Пользовательская роль неопределена',
 			});
 		return user.role;
 	}),

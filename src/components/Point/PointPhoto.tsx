@@ -11,7 +11,7 @@ import { useHelpers } from '~/stores/useHelpers';
 
 const PointPhoto = () => {
 	const { point } = usePointContext();
-    const setIs = useHelpers((state) => state.setIsCarosel)
+	const setIs = useHelpers((state) => state.setIsCarosel);
 	const [selectedIndex, setSelectedIndex] = useState(0);
 	const [emblaRef, emblaApi] = useEmblaCarousel({
 		startIndex: 0,
@@ -70,7 +70,7 @@ const PointPhoto = () => {
 
 	return (
 		<Stack onTouchStart={() => setIs(true)} onTouchEnd={() => setIs(false)}>
-			<Stack ref={emblaRef} overflow={'hidden'} position="relative" >
+			<Stack ref={emblaRef} overflow={'hidden'} position="relative">
 				<Stack display={'flex'} direction={'row'}>
 					{point.images.map((src) => (
 						<Image
