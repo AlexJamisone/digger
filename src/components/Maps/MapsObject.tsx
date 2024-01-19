@@ -79,7 +79,6 @@ const MapsObject = () => {
 					mapAutoFocus: true,
 					maxZoom: timemod ? 13 : undefined,
 					minZoom: timemod ? 6 : undefined,
-					restrictMapArea: timemod ? true : false,
 				}}
 			>
 				{state.isSet ? (
