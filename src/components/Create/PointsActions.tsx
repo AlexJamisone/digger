@@ -25,6 +25,7 @@ const PointsActions = () => {
 								longitude: state.longitude as number,
 								linkToVideo: state.videoLink,
 								name: state.name,
+								isTourist: state.isTourist,
 							},
 							{
 								onSuccess: () => {
@@ -47,6 +48,7 @@ const PointsActions = () => {
 								latitude: state.latitude as number,
 								longitude: state.longitude as number,
 								linkToVideo: state.videoLink,
+								isTourist: state.isTourist,
 							},
 							{
 								onSuccess: () => {

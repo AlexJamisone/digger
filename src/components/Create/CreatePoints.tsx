@@ -66,7 +66,7 @@ const CreatePoints = ({ action, images, inputs }: CreatePointsProps) => {
 				}}
 				layout
 			>
-				<ModalHeader textAlign="center">Новая точка</ModalHeader>
+				<ModalHeader textAlign="center">{state.edit ? "Обновить точку" : "Создать точку"}</ModalHeader>
 				<ModalCloseButton />
 				<ModalBody>
 					{images}

@@ -43,6 +43,7 @@ const PointAction = () => {
 						videoLink: point.linkToVideo,
 						latitude: point.latitude,
 						longitude: point.longitude,
+                        isTourist: point.IsTourist
 					},
 				});
 				onClose();

@@ -1,4 +1,4 @@
-import { Center, Stack, useDisclosure } from '@chakra-ui/react';
+import { Stack, useDisclosure } from '@chakra-ui/react';
 import { Placemark } from '@pbe/react-yandex-maps';
 import type { Point } from '@prisma/client';
 import { useMapsContext } from '~/context/mapsContext';
@@ -23,7 +23,14 @@ const PlaceMarkPoint = ({ point }: PlaceMarkPointProps) => {
 					onToggle();
 				}}
 				options={{
-					preset: isOpen ? 'islands#darkGreenIcon' : undefined,
+					preset:
+						isOpen && !point.IsTourist
+							? 'islands#darkGreenIcon'
+							: point.IsTourist && !isOpen
+								? 'islands#violetCircleDotIcon'
+								: isOpen && point.IsTourist
+									? 'islands#darkGreenCircleDotIcon'
+									: undefined,
 				}}
 			/>
 			<PointDrawer isOpen={isOpen} onClose={onClose} point={point} />

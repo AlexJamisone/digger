@@ -1,4 +1,5 @@
 import {
+	Checkbox,
 	FormControl,
 	FormErrorMessage,
 	FormLabel,
@@ -46,6 +47,15 @@ const PointsInputs = () => {
 					</FormControl>
 				),
 			)}
+			<Checkbox
+				isChecked={state.isTourist}
+                colorScheme='purple'
+				onChange={(e) =>
+					dispatch({ type: 'SET_TOURIST', payload: e.target.checked })
+				}
+			>
+				Tуристическое место
+			</Checkbox>
 		</Stack>
 	);
 };

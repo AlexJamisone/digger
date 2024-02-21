@@ -19,6 +19,7 @@ export const pointsRouter = createTRPCRouter({
 				latitude: z.number(),
 				longitude: z.number(),
 				linkToVideo: z.string(),
+				isTourist: z.boolean(),
 			}),
 		)
 		.mutation(async ({ ctx, input }) => {
@@ -30,6 +31,7 @@ export const pointsRouter = createTRPCRouter({
 					longitude: input.longitude,
 					linkToVideo: input.linkToVideo,
 					images: input.images,
+					IsTourist: input.isTourist,
 				},
 			});
 		}),
@@ -58,6 +60,7 @@ export const pointsRouter = createTRPCRouter({
 				latitude: z.number(),
 				longitude: z.number(),
 				linkToVideo: z.string(),
+				isTourist: z.boolean(),
 			}),
 		)
 		.mutation(async ({ ctx, input }) => {
@@ -72,6 +75,7 @@ export const pointsRouter = createTRPCRouter({
 					linkToVideo: input.linkToVideo,
 					longitude: input.longitude,
 					name: input.name,
+					IsTourist: input.isTourist,
 				},
 			});
 		}),

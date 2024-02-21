@@ -23,6 +23,7 @@ model Point {
     longitude   Float
     linkToVideo String
     Comments    Comments[]
+    IsTourist Boolean @default(false)
 }
 
 model Comments {

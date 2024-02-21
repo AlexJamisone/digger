@@ -1,3 +1,4 @@
+import { BsStars } from 'react-icons/bs';
 import {
 	Button,
 	Center,
@@ -5,6 +6,7 @@ import {
 	DrawerCloseButton,
 	DrawerContent,
 	DrawerHeader,
+	Icon,
 	Stack,
 	Text,
 	useMediaQuery,
@@ -77,6 +79,12 @@ const DrawerInner = ({
 						{point.description}
 					</Text>
 					<PointSocial />
+					{point.IsTourist && (
+						<Stack direction="row" alignItems='center' justifyContent='center' cursor='default' fontWeight={600}>
+							<Icon as={BsStars} fill="#b51eff" boxSize={7}/>
+							<Text>Туристическое место</Text>
+						</Stack>
+					)}
 					<PointComments />
 					{role && <PointAction />}
 				</DrawerBody>
