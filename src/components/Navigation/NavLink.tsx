@@ -1,7 +1,4 @@
-import { Link } from '@chakra-ui/next-js';
-import { Box, Stack, Text } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
-import { links } from '~/constants/links';
+import { Stack } from '@chakra-ui/react';
 
 const NavLink = ({
 	position,

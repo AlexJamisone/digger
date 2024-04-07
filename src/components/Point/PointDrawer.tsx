@@ -12,7 +12,7 @@ import {
 	Icon,
 	DrawerContent,
 } from '@chakra-ui/react';
-import { Point } from '@prisma/client';
+import { type Point } from '@prisma/client';
 import {
 	motion,
 	useDragControls,
@@ -39,12 +39,16 @@ const PointDrawer = ({ isOpen, onClose, point }: PointDrawerProps) => {
 	const [drawerRef, { height }] = useMeasure();
 
 	const handlClose = async () => {
-		animate(scope.current, { opacity: [1, 0] });
-		const yStart = typeof y.get() === 'number' ? y.get() : 0;
-		await animate('.drawer', {
-			y: [yStart, height],
-		});
-		onClose();
+		try {
+			void animate(scope.current, { opacity: [1, 0] });
+			const yStart = typeof y.get() === 'number' ? y.get() : 0;
+			await animate('.drawer', {
+				y: [yStart, height],
+			});
+			onClose();
+		} catch (err) {
+			console.log(err);
+		}
 	};
 	const Content = motion(DrawerContent);
 	return (
@@ -79,7 +83,7 @@ const PointDrawer = ({ isOpen, onClose, point }: PointDrawerProps) => {
 					style={{ y }}
 					onDragEnd={() => {
 						if (y.get() >= 100) {
-							handlClose();
+							void handlClose();
 						}
 					}}
 					dragControls={controls}

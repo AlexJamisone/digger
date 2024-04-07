@@ -5,9 +5,9 @@ import {
 import { Icon, IconButton, Image, Skeleton, Stack } from '@chakra-ui/react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { useCallback, useEffect, useState } from 'react';
-import { IconType } from 'react-icons';
+import { type IconType } from 'react-icons';
 import { useHelpers } from '~/stores/useHelpers';
-import { Point } from '@prisma/client';
+import { type Point } from '@prisma/client';
 
 const PointPhoto = ({ point }: { point: Point }) => {
 	const setIs = useHelpers((state) => state.setIsCarosel);
@@ -74,6 +74,7 @@ const PointPhoto = ({ point }: { point: Point }) => {
 					{point.images.map((src) => (
 						<Image
 							src={`https://uploadthing.com/f/${src}`}
+							alt={src}
 							key={src}
 							flex={'0 0 100%'}
 							minW={0}

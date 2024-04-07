@@ -1,4 +1,4 @@
-import { IconType } from 'react-icons';
+import { type IconType } from 'react-icons';
 import { FaTwitch, FaYandexInternational, FaYoutube } from 'react-icons/fa';
 import { SlSocialVkontakte } from 'react-icons/sl';
 

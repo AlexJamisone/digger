@@ -1,5 +1,5 @@
 import { Icon, IconButton, Stack, useToast } from '@chakra-ui/react';
-import { Point } from '@prisma/client';
+import { type Point } from '@prisma/client';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { FiEdit2 } from 'react-icons/fi';
 import { useMapsContext } from '~/context/mapsContext';

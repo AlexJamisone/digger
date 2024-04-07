@@ -12,7 +12,7 @@ import {
 	Textarea,
 	useToast,
 } from '@chakra-ui/react';
-import { Point } from '@prisma/client';
+import { type Point } from '@prisma/client';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
 import { AnimatePresence, motion } from 'framer-motion';

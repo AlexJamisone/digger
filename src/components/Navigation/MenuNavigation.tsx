@@ -17,10 +17,10 @@ import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { RiMenu4Fill, RiMenuLine } from 'react-icons/ri';
 import { links } from '~/constants/links';
-import { MapState, useMap } from '~/stores/useMap';
+import { type MapState, useMap } from '~/stores/useMap';
 
 const MenuNavigation = () => {
-	const { setTime, time } = useMap();
+	const { setTime } = useMap();
 	const { reload } = useRouter();
 	return (
 		<Menu autoSelect={false}>
