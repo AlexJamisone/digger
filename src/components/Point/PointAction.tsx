@@ -1,14 +1,19 @@
 import { Icon, IconButton, Stack, useToast } from '@chakra-ui/react';
+import { Point } from '@prisma/client';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { FiEdit2 } from 'react-icons/fi';
 import { useMapsContext } from '~/context/mapsContext';
-import { usePointContext } from '~/context/pointContext';
 import { api } from '~/utils/api';
-const PointAction = () => {
+const PointAction = ({
+	point,
+	onClose,
+}: {
+	point: Point;
+	onClose: () => void;
+}) => {
 	const { mutate: deletPoint, isLoading } = api.points.delete.useMutation();
 	const ctx = api.useContext();
 	const { dispatch, dispatchSelect } = useMapsContext();
-	const { point, onClose } = usePointContext();
 	const toast = useToast();
 	const handlButton = (
 		label: 'delet' | 'edit',
@@ -43,7 +48,7 @@ const PointAction = () => {
 						videoLink: point.linkToVideo,
 						latitude: point.latitude,
 						longitude: point.longitude,
-                        isTourist: point.IsTourist
+						isTourist: point.IsTourist,
 					},
 				});
 				onClose();

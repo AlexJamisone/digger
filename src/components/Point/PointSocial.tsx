@@ -1,9 +1,8 @@
 import { Link } from '@chakra-ui/next-js';
 import { Button } from '@chakra-ui/react';
-import { usePointContext } from '~/context/pointContext';
+import { Point } from '@prisma/client';
 import DzenIcon from '~/icons/DzenIcon';
-const PointSocial = () => {
-	const { point } = usePointContext();
+const PointSocial = ({ point }: { point: Point }) => {
 	return (
 		<Button
 			as={Link}
@@ -12,6 +11,7 @@ const PointSocial = () => {
 			target="_blank"
 			variant={'outline'}
 			p={2}
+			size="sm"
 			_hover={{
 				textDecoration: 'none',
 			}}

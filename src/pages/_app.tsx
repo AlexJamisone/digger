@@ -3,7 +3,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { type AppType } from 'next/app';
 import { theme } from '~/chakra/theme';
 import Navigation from '~/components/Maps/Navigation';
-import { ruRU } from '~/localization/ruRu';
+import { ruRU } from '@clerk/localizations';
 import { api } from '~/utils/api';
 import '../styles/global.css';
 

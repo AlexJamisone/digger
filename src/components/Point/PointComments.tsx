@@ -12,18 +12,17 @@ import {
 	Textarea,
 	useToast,
 } from '@chakra-ui/react';
+import { Point } from '@prisma/client';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
 import { AnimatePresence, motion } from 'framer-motion';
 import { createRef, useState } from 'react';
 import ReCAPTCHA from 'react-google-recaptcha';
-import { usePointContext } from '~/context/pointContext';
 import { env } from '~/env.mjs';
 import { api } from '~/utils/api';
 dayjs.locale('ru');
 
-const PointComments = () => {
-	const { point } = usePointContext();
+const PointComments = ({ point }: { point: Point }) => {
 	const { data: comments, isLoading: loadingGet } = api.comments.get.useQuery(
 		{
 			id: point.id,

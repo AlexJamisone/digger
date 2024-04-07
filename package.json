@@ -17,6 +17,7 @@
 	"dependencies": {
 		"@chakra-ui/next-js": "^2.1.4",
 		"@chakra-ui/react": "^2.7.0",
+		"@clerk/localizations": "^1.28.2",
 		"@clerk/nextjs": "^4.19.0",
 		"@emotion/react": "^11.11.0",
 		"@emotion/styled": "^11.11.0",
@@ -41,6 +42,7 @@
 		"react-dropzone": "^14.2.3",
 		"react-google-recaptcha": "^3.1.0",
 		"react-icons": "^4.9.0",
+		"react-use-measure": "^2.1.1",
 		"superjson": "1.12.2",
 		"uploadthing": "^4.0.0",
 		"yandex-maps": "^0.0.1",

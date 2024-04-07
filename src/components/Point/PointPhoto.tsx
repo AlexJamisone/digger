@@ -6,11 +6,10 @@ import { Icon, IconButton, Image, Skeleton, Stack } from '@chakra-ui/react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { useCallback, useEffect, useState } from 'react';
 import { IconType } from 'react-icons';
-import { usePointContext } from '~/context/pointContext';
 import { useHelpers } from '~/stores/useHelpers';
+import { Point } from '@prisma/client';
 
-const PointPhoto = () => {
-	const { point } = usePointContext();
+const PointPhoto = ({ point }: { point: Point }) => {
 	const setIs = useHelpers((state) => state.setIsCarosel);
 	const [selectedIndex, setSelectedIndex] = useState(0);
 	const [emblaRef, emblaApi] = useEmblaCarousel({
