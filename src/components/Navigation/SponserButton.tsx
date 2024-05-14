@@ -11,7 +11,7 @@ const SponserButton = () => {
 				textDecoration: 'none',
 			}}
 			target="_blank"
-			href="https://www.tinkoff.ru/cf/142W441ULA3"
+			href="https://www.tinkoff.ru/rm/bakhmanov.aleksandr2/4PXEg7008"
 		>
 			Поддержать
 		</Button>
