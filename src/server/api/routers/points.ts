@@ -1,10 +1,10 @@
-import { utapi } from 'uploadthing/server';
 import { z } from 'zod';
 import {
 	adminProcedure,
 	createTRPCRouter,
 	publicProcedure,
 } from '~/server/api/trpc';
+import { utapi } from '~/server/utapi';
 
 export const pointsRouter = createTRPCRouter({
 	get: publicProcedure.query(async ({ ctx }) => {
