@@ -1,10 +1,8 @@
 import { Stack } from '@chakra-ui/react';
-import { UploadDropzone } from '@uploadthing/react';
-import '@uploadthing/react/styles.css';
 import { AnimatePresence } from 'framer-motion';
 import { useMapsContext } from '~/context/mapsContext';
-import { type OurFileRouter } from '~/server/uploadthings';
 import PointImages from './PointImages';
+import { UploadDropzone } from '~/utils/uploadthings';
 const PointsImagesUpload = () => {
 	const { dispatch, state } = useMapsContext();
 
@@ -22,13 +20,16 @@ const PointsImagesUpload = () => {
 					))}
 				</AnimatePresence>
 			</Stack>
-			<UploadDropzone<OurFileRouter>
+			<UploadDropzone
 				endpoint="imageUploader"
+                config={{
+                    mode: 'auto'
+                }}
 				onClientUploadComplete={(res) => {
 					if (!res) throw new Error('Error with upload');
 					dispatch({
 						type: 'SET_IMG_WITH_OLD',
-						payload: res?.map(({ fileKey }) => fileKey),
+						payload: res?.map(({ key }) => key),
 					});
 				}}
 				onUploadError={(e) => console.log(e.message)}

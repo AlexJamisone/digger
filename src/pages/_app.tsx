@@ -5,6 +5,7 @@ import { theme } from '~/chakra/theme';
 import Navigation from '~/components/Maps/Navigation';
 import { ruRU } from '@clerk/localizations';
 import { api } from '~/utils/api';
+import '@uploadthing/react/styles.css';
 import '../styles/global.css';
 
 const MyApp: AppType = ({ Component, pageProps }) => {

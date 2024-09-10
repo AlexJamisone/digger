@@ -1,6 +1,6 @@
-import { utapi } from 'uploadthing/server';
 import { z } from 'zod';
 import { adminProcedure, createTRPCRouter } from '~/server/api/trpc';
+import { utapi } from '~/server/utapi';
 
 export const imageRouter = createTRPCRouter({
 	deletImage: adminProcedure
